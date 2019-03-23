@@ -14,11 +14,10 @@ public class IHMFahrenheit extends JFrame implements ActionListener{
 
   public IHMFahrenheit(){
     super("IHM Fahrenheit");
- 
     setLayout(new FlowLayout());
     add( entree ); add( boutonDeConversion ); add( sortie );
     sortie.setEditable( false );
-    getContentPane().setBackground( Color.pink );
+    getContentPane().setBackground( Color.pink);
     setLocation(100,100);
     pack();setVisible(true);
     
@@ -32,13 +31,19 @@ public class IHMFahrenheit extends JFrame implements ActionListener{
    */
   public void actionPerformed( ActionEvent ae ){
     try{
-      int fahrenheit = 0; // valeur est une String et doit être convertie en entier, voir java.lang.Integer méthode parseInt (--> try/catch)
-      float celsius = 0F; // à compléter, en appelant la méthode ad'hoc de la question2 
-      // un test ici pour le zéro absolu (-273.1)
-
-      sortie.setText( Float.toString( celsius));
-    }catch(NumberFormatException nfe){
-      sortie.setText("error ! ");
+        
+      int fah = 0;
+      float cel = 0F; 
+      
+      fah = Integer.parseInt(entree.getText());
+      cel = FahrenheitCelsius.fahrenheitEnCelsius(fah);
+      
+      if(cel < -273.1F) 
+      cel = -273.1F;
+      sortie.setText(Float.toString(cel));
+    } 
+        catch(NumberFormatException e){
+            sortie.setText("error");
     }
   }
   
